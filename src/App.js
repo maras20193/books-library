@@ -3,12 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { blue, red } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 import Create from './pages/Create';
+import Notes from './pages/Notes';
 
 
 
@@ -31,15 +31,15 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            {/* <Route exact path="/">
-            </Route> */}
-            <Route path="/">
+            <Route exact path="/">
+              <Notes/>
+            </Route>
+            <Route path="/create">
               <Create/>
             </Route>
           </Switch>
         </Router>
       </ThemeProvider>
-
     </div>
   );
 }
