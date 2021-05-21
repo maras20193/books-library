@@ -1,4 +1,7 @@
+import { Container, Grid} from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
+
+import NoteCard from '../components/NoteCard'
 
 const Notes = () => {
   const [notes, setNotes] = useState([])
@@ -10,13 +13,15 @@ const Notes = () => {
   }, [])
 
   return (
-    <div>
-      {notes.map(note => {
-        return (
-          <div key={note.id}>{note.title}</div>
-        )
-      })}
-    </div>
+    <Container>
+      <Grid container spacing={3}>
+        {notes.map(note => (
+          <Grid item key={note.id} xs={12} md={6} lg={4}>
+            <NoteCard note={note}/>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
 
   )
   }

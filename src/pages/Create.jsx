@@ -10,10 +10,10 @@ import {
   RadioGroup, 
   TextField, 
   Typography, 
-  withWidth
 } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
   field: {
@@ -37,6 +37,8 @@ const Create = () => {
 
   const classes = useStyles();
 
+  const history = useHistory()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false);
@@ -50,7 +52,7 @@ const Create = () => {
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify({ title, details, category })
-    })
+    }).then(() => history.push('/'))
     }
   }
 
