@@ -9,23 +9,29 @@ import { theme } from './theme/theme'
 
 import Create from './pages/Create';
 import Notes from './pages/Notes';
+import Layout from './components/Layout';
+import AppProvider from './context/AppContext';
 
 
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Notes/>
-            </Route>
-            <Route path="/create">
-              <Create/>
-            </Route>
-          </Switch>
-        </Router>
-      </ThemeProvider>
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <Notes/>
+                </Route>
+                <Route path="/create">
+                  <Create/>
+                </Route>
+              </Switch>
+            </Layout>
+          </Router>
+        </ThemeProvider>
+      </AppProvider>
     </div>
   );
 }

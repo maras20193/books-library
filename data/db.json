@@ -1,12 +1,6 @@
 {
   "notes": [
     {
-      "title": "Eat fruits",
-      "details": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi",
-      "category": "health",
-      "id": 1
-    },
-    {
       "title": "Learn Material UI",
       "details": "React components for faster and easier web development. Build your own design system, or start with Material Design.",
       "category": "work",
@@ -19,16 +13,34 @@
       "id": 3
     },
     {
-      "title": "test",
-      "details": "tsdkfnkjanlkrgfnvkajnkslmd;lkewo oekfosC O OEKF'd oekfodmv poef d;km;l ",
-      "category": "work",
+      "title": "Eat pizza",
+      "details": "izza ipsum dolor amet philly chicken string cheese lasagna white pizza stuffed crust meatball ranch chicken. Personal garlic large Chicago style mozzarella pie garlic sauce. Burnt mouth platter meatball, white garlic peppers spinach mushrooms garlic parmesan pepperoni pepperoni. Thin crust bianca extra sauce meat lovers fresh tomatoes meatball mozzarella bbq sauce, anchovies bbq rib white pizza sauteed onions pizza peppers pesto. Meatball fresh tomatoes red onions, pork philly chicken melted cheese extra sauce.",
+      "category": "health",
       "id": 4
     },
     {
-      "title": "nowy tescik",
-      "details": "ddsdsdsdsdsd",
-      "category": "books",
+      "title": "Add Change Theme Feature",
+      "details": "The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.\n\nThemes let you apply a consistent tone to your app. It allows you to customize all design aspects of your project in order to meet the specific needs of your business or brand.\n\nTo promote greater consistency between apps, light and dark th",
+      "category": "home",
       "id": 5
+    },
+    {
+      "title": "lorem",
+      "details": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"",
+      "category": "health",
+      "id": 9
+    },
+    {
+      "title": "hhhhhahahahah",
+      "details": "expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur i",
+      "category": "home",
+      "id": 10
+    },
+    {
+      "title": "cos nowego ",
+      "details": "mojaTablica[0] ma wartość \"trzy\"\nmojaTablica[1] ma wartość \"dwa\"\nmojaTablica[2] ma wartość \"jeden\"",
+      "category": "home",
+      "id": 11
     }
   ]
 }
