@@ -5,9 +5,11 @@ import Masonry from 'react-masonry-css';
 import { AppContext } from '../context/AppContext'
 
 import NoteCard from '../components/NoteCard';
+import Loader from '../components/Loader';
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
+  const [isPending, setIsPending] = useState(true)
   const { filter, changeFilter } = useContext(AppContext);
 
   const API_URL = filter 
@@ -15,11 +17,15 @@ const Notes = () => {
     : "http://localhost:8000/notes"
 
   useEffect(() => {
-    fetch(API_URL)
+      fetch(API_URL)
       .then(response => response.json())
-      .then(data => setNotes(data.reverse()))
-      .then(console.log('renderuje notsy'))
+      .then(data => {
+        setNotes(data.reverse())
+        setIsPending(true)
+      })
   }, [filter]);
+
+
 
   const handleDelete = async (id) => {
     await fetch("http://localhost:8000/notes/" + id, {
@@ -46,7 +52,9 @@ const Notes = () => {
     //     ))}
     //   </Grid>
     // </Container>
-
+    <>
+    {isPending && <Loader/>}
+    {notes && 
     <Container>
       <Masonry
         breakpointCols={breakpoints}
@@ -60,6 +68,8 @@ const Notes = () => {
         ))}
       </Masonry>
     </Container>
+    }
+    </>
 
   )
   };

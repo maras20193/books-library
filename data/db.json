@@ -37,10 +37,22 @@
       "id": 10
     },
     {
-      "title": "cos nowego ",
-      "details": "mojaTablica[0] ma wartość \"trzy\"\nmojaTablica[1] ma wartość \"dwa\"\nmojaTablica[2] ma wartość \"jeden\"",
+      "title": "Add theme",
+      "details": "theme select and ",
       "category": "home",
-      "id": 11
+      "id": 12
+    },
+    {
+      "title": "jesc",
+      "details": "cos tam ",
+      "category": "health",
+      "id": 13
+    },
+    {
+      "title": "gfhgf",
+      "details": "jhfjhgh",
+      "category": "work",
+      "id": 14
     }
   ]
 }

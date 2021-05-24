@@ -4,6 +4,7 @@ import React from 'react'
 import { useHistory, useLocation } from 'react-router';
 import { format } from 'date-fns'
 import FilterNav from './FilterNav';
+import ThemeMenu from './ThemeMenu'
 
 const drawerWidth = 240;
 
@@ -25,10 +26,14 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
     },
     active: {
-      background: '#f4f4f4'
+      background: '#f4f4f4',
     },
     title: {
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
+      fontFamily: 'arial',
+      fontFamily: 'Gloria Hallelujah, cursive',
+      fontFamily: 'Frijole, cursive',
+      textAlign: 'center'
     },
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`
@@ -44,11 +49,11 @@ const useStyles = makeStyles((theme) => {
 });
 
 const menuItems = [
-  {
-    text: "Notes",
-    icon: <SubjectOutlined color="primary"/>,
-    path: '/'
-  },
+  // {
+  //   text: "Notes",
+  //   icon: <SubjectOutlined color="primary"/>,
+  //   path: '/'
+  // },
   {
     text: "Create Note",
     icon: <AddCircleOutlined color="primary"/>,
@@ -76,6 +81,7 @@ const Layout = ({children}) => {
           <Typography className={classes.date}>
             Today is the { format(new Date(), 'do MMMM Y') }
           </Typography>
+          <ThemeMenu/>
           <Typography>
             Lucas
           </Typography>
@@ -95,6 +101,7 @@ const Layout = ({children}) => {
           <Typography 
             variant="h5"
             className={classes.title}
+            color="secondary"
             >
             My notes
           </Typography>
