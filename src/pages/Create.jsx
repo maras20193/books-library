@@ -6,8 +6,11 @@ import {
   FormControl, 
   FormControlLabel, 
   FormLabel, 
+  InputLabel, 
+  MenuItem, 
   Radio, 
   RadioGroup, 
+  Select, 
   TextField, 
   Typography, 
 } from '@material-ui/core';
@@ -30,10 +33,16 @@ const useStyles = makeStyles({
 
 const Create = () => {
   const [title, setTitle] = useState('');
-  const [details, setDetails] = useState('');
-  const [category, setCategory] = useState('home');
+  const [author, setAuthor] = useState('');
+  const [primaryCategory, setPrimaryCategory] = useState('economics');
+  const [secondaryCategory, setSecondaryCategory] = useState('none');
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [date, setDate] = useState(new Date().toISOString().slice(0,7));
+
   const [titleError, setTitleError] = useState(false);
-  const [detailsError, setDetailsError] = useState(false);
+  const [authorError, setAuthorError] = useState(false);
+  const [numberOfPagesError, setNumberOfPagesError] = useState(false);
+  const [dateError, setDateError] = useState(false);
 
   const classes = useStyles();
 
@@ -42,19 +51,38 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false);
-    setDetailsError(false);
+    setAuthorError(false);
+    setNumberOfPagesError(false);
+    setDateError(false)
 
     if (!title) setTitleError(true);
-    if (!details) setDetailsError(true);
+    if (!author) setAuthorError(true);
+    if (!numberOfPages) setNumberOfPagesError(true);
+    if (!date) setDate(true);
 
-    if( title && details) {
+    if( title && author && numberOfPages ) {
+      const book = {
+        title,
+        author,
+        primaryCategory,
+        secondaryCategory,
+        numberOfPages,
+        date,
+      }
     fetch("http://localhost:8000/notes", {
       method: "POST",
       headers: {"Content-type": "application/json"},
-      body: JSON.stringify({ title, details, category })
+      body: JSON.stringify(book)
     }).then(() => history.push('/'))
     }
   }
+
+  const primaryCategoryList = [
+    'Economics', 'Health', 'Self-grow', 'Fiction', 'Popular-science', 'Philosophy', 'Biography', 'Political'
+  ]
+  const secondaryCategoryList = [
+    'Economics', 'Health', 'Self-grow', 'Fiction', 'Popular-science', 'Philosophy', 'Biography', 'Political', 'None'
+  ]
 
     return (
         <Container>
@@ -64,7 +92,7 @@ const Create = () => {
             color="textSecondary"
             gutterBottom
           >
-            Add new task
+            Add new book :)
           </Typography>
 
           <form 
@@ -77,14 +105,14 @@ const Create = () => {
             className={classes.field}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            label="Note Title" 
+            label="Title" 
             variant="outlined"
             color="primary"
             fullWidth
             required
             error={titleError}
             />
-          <TextField
+          {/* <TextField
             className={classes.field}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -96,17 +124,85 @@ const Create = () => {
             rows={4}
             required
             error={detailsError}
+            /> */}
+            <TextField 
+            className={classes.field}
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            label="Author" 
+            variant="outlined"
+            color="primary"
+            fullWidth
+            required
+            error={authorError}
             />
+            
+
+          {/* <FormControl className={classes.field} variant='outlined'>
+            <InputLabel id='primaryCategory'>Primary Category</InputLabel>
+            <Select
+              labelId='primaryCategory'
+              value={primaryCategory}
+              onChange={(e) => setPrimaryCategory(e.target.value)}
+              >
+              {primaryCategoryList.map(category => 
+                <MenuItem value={category.toLowerCase()}>{category}</MenuItem>
+              )}
+              </Select>
+          </FormControl> */}
 
           <FormControl className={classes.field}>
-            <FormLabel>Note Category</FormLabel>
-            <RadioGroup className={classes.radio} value={category} onChange={(e) => setCategory(e.target.value)}>
-            <FormControlLabel value='home' control={<Radio/>} label="Home" />
-            <FormControlLabel value='work' control={<Radio/>} label="Work" />
-            <FormControlLabel value='health' control={<Radio/>} label="Health" />
-            <FormControlLabel value='books' control={<Radio/>} label="Books" />
-          </RadioGroup>
+            <FormLabel>Primary Category</FormLabel>
+            <RadioGroup className={classes.radio} value={primaryCategory} onChange={(e) => setPrimaryCategory(e.target.value)}>
+              {primaryCategoryList.map(category => {
+                return (
+                  <FormControlLabel 
+                    value={category.toLocaleLowerCase()} 
+                    control={<Radio/>} 
+                    label={category} />
+                )
+              })}
+            </RadioGroup>
           </FormControl>
+
+          <FormControl className={classes.field}>
+            <FormLabel>Secondary Category</FormLabel>
+            <RadioGroup className={classes.radio} value={secondaryCategory} onChange={(e) => setSecondaryCategory(e.target.value)}>
+              {secondaryCategoryList.map(category => {
+                return (
+                  <FormControlLabel 
+                    value={category.toLocaleLowerCase()} 
+                    control={<Radio/>} 
+                    label={category} />
+                )
+              })}
+            </RadioGroup>
+          </FormControl>
+
+          <TextField 
+            className={classes.field}
+            value={numberOfPages}
+            onChange={(e) => setNumberOfPages(e.target.value)}
+            label="Number of Pages" 
+            variant="outlined"
+            color="primary"
+            // fullWidth
+            required
+            error={numberOfPagesError}
+            type='number'
+            />
+            <TextField 
+            className={classes.field}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            label="Date" 
+            variant="outlined"
+            color="primary"
+            // fullWidth
+            required
+            error={dateError}
+            type='month'
+            />
           
 
           <Button
@@ -124,6 +220,6 @@ const Create = () => {
 
         </Container>
     );
-}
+            }
 
 export default Create

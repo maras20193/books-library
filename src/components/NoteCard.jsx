@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, CardHeader, IconButton, Typography, makeStyles, Avatar } from '@material-ui/core'
+import { Card, CardContent, CardHeader, IconButton, Typography, makeStyles, Avatar, CardMedia } from '@material-ui/core'
 import { DeleteOutlined } from '@material-ui/icons';
 import { green, indigo, pink, yellow } from '@material-ui/core/colors';
 
@@ -19,6 +19,19 @@ const useStyles = makeStyles({
 				return pink[400]
 			};
 		} 
+	},
+	media: {
+		height: '100px',
+		paddingTop: '56.25%',
+		marginRight: '6%',
+		marginLeft: '6%',
+		backgroundPosition: 'center center',
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'contain'
+	},
+	flex: {
+		display: 'flex',
+		justifyContent: 'space-between'
 	}
 })
 
@@ -31,7 +44,7 @@ const NoteCard = ({ note, handleDelete }) => {
 				<CardHeader
 					avatar={
 						<Avatar className={classes.avatar}>
-							{note.category[0].toUpperCase()}
+							{note.primaryCategory &&note.primaryCategory[0].toUpperCase()}
 						</Avatar>
 					}
 					action={
@@ -40,12 +53,21 @@ const NoteCard = ({ note, handleDelete }) => {
 						</IconButton>
 					}
 					title={note.title}
-					subheader={note.category}
+					subheader={note.primaryCategory}
 				/>
-				<CardContent>
+				<CardMedia
+					className={classes.media}
+					image='https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-b-iext66634845.jpg'
+					title='harry'
+				/>
+				<CardContent className={classes.flex}>
 					<Typography 
 						variant="body2" color="textSecondary">
-						{note.details}
+						Pages: {note.numberOfPages} 
+					</Typography>
+					<Typography 
+						variant="body2" color="textSecondary">
+						Date: {note.date} 
 					</Typography>
 				</CardContent>
 			</Card>

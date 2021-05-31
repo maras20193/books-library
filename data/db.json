@@ -4,6 +4,7 @@
       "title": "Learn Material UI",
       "details": "React components for faster and easier web development. Build your own design system, or start with Material Design.",
       "category": "work",
+      "numberOfPages": 200,
       "id": 2
     },
     {
@@ -34,25 +35,54 @@
       "title": "hhhhhahahahah",
       "details": "expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur i",
       "category": "home",
+      "numberOfPages": 200,
       "id": 10
-    },
-    {
-      "title": "Add theme",
-      "details": "theme select and ",
-      "category": "home",
-      "id": 12
     },
     {
       "title": "jesc",
       "details": "cos tam ",
       "category": "health",
+      "numberOfPages": 200,
       "id": 13
     },
     {
       "title": "gfhgf",
       "details": "jhfjhgh",
       "category": "work",
+      "numberOfPages": 200,
       "id": 14
+    },
+    {
+      "title": "hahahah",
+      "details": "aaaaaaaaaaaaaaaaaa",
+      "category": "books",
+      "numberOfPages": 200,
+      "id": 15
+    },
+    {
+      "title": "nowa ksiazka",
+      "details": "co to ",
+      "category": "economics",
+      "numberOfPages": 200,
+      "id": 16
+    },
+    {
+      "title": "harry potter",
+      "author": "J K Rowling",
+      "primaryCategory": "fiction",
+      "secondaryCategory": "none",
+      "numberOfPages": "700",
+      "date": "2021-05",
+      "id": 17
+    },
+    {
+      "title": "fafaf",
+      "author": "afafafaf",
+      "primaryCategory": "fiction",
+      "secondaryCategory": "fiction",
+      "numberOfPages": "022222",
+      "date": "2021-05",
+      "id": 18
     }
   ]
 }

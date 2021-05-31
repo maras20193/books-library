@@ -1,94 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
 import { Avatar } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-}));
+import { theme } from '../theme/theme'
+import { green, pink} from '@material-ui/core/colors';
+import { AppContext } from '../context/AppContext';
 
-export default function MenuListComposition() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+export default function SimpleMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { mainTheme, changeTheme } = useContext(AppContext);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
+    setAnchorEl(null);
   };
+  
 
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
+  // const changeTheme = (id) => {
+  //   console.log('ami')
+  //   theme.palette.primary = green;
+  //   theme.palette.secondary = pink;
+  //   console.log(theme.palette.primary)
+  // }
 
   return (
-    <div className={classes.root}>
-      <div>
-        <IconButton
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-            <ColorLensIcon/>
-        </IconButton>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}>
-                        <Avatar fontSize="small" size="small"/>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Avatar fontSize="small" size="small"/>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Avatar fontSize="small" size="small"/>
-                    </MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+    <div>
+      <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <ColorLensIcon/>
+      </IconButton>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} >
+          <Avatar id="pink">Pi</Avatar>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar id="green">G</Avatar>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar id="purple">Pu</Avatar>
+        </MenuItem>
+      </Menu>
     </div>
   );
 }

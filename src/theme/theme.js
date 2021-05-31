@@ -1,9 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
+import { blue, indigo, lightBlue, pink } from '@material-ui/core/colors';
+
 
 export const theme = createMuiTheme({
     palette: {
-        primary: blue,
+        primary: indigo,
+        secondary: pink,
     },
     typography: {
         fontFamily: 'Quicksand',

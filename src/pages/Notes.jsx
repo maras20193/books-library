@@ -21,7 +21,7 @@ const Notes = () => {
       .then(response => response.json())
       .then(data => {
         setNotes(data.reverse())
-        setIsPending(true)
+        setIsPending(false)
       })
   }, [filter]);
 
@@ -43,33 +43,39 @@ const Notes = () => {
   }
 
   return (
-    // <Container>
-    //   <Grid container spacing={3}>
-    //     {notes.map(note => (
-    //       <Grid item key={note.id} xs={12} md={6} lg={4}>
-    //         <NoteCard note={note} handleDelete={handleDelete}/>
-    //       </Grid>
-    //     ))}
-    //   </Grid>
-    // </Container>
     <>
     {isPending && <Loader/>}
-    {notes && 
-    <Container>
-      <Masonry
-        breakpointCols={breakpoints}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-        >
+    {notes && <Container>
+      <Grid container spacing={3}>
         {notes.map(note => (
-          <div item key={note.id}>
+          <Grid item key={note.id} xs={12} md={6} lg={4}>
             <NoteCard note={note} handleDelete={handleDelete}/>
-          </div>
+          </Grid>
         ))}
-      </Masonry>
-    </Container>
-    }
+      </Grid>
+    </Container>}
     </>
+
+
+// {masonry grid}
+    // <>
+    // {isPending && <Loader/>}
+    // {notes && 
+    // <Container>
+    //   <Masonry
+    //     breakpointCols={breakpoints}
+    //     className="my-masonry-grid"
+    //     columnClassName="my-masonry-grid_column"
+    //     >
+    //     {notes.map(note => (
+    //       <div item key={note.id}>
+    //         <NoteCard note={note} handleDelete={handleDelete}/>
+    //       </div>
+    //     ))}
+    //   </Masonry>
+    // </Container>
+    // }
+    // </>
 
   )
   };
