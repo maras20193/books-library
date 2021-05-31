@@ -13,7 +13,7 @@ const Notes = () => {
   const { filter, changeFilter } = useContext(AppContext);
 
   const API_URL = filter 
-    ? `http://localhost:8000/notes?category=${filter}` 
+    ? `http://localhost:8000/notes?primaryCategory=${filter}` 
     : "http://localhost:8000/notes"
 
   useEffect(() => {

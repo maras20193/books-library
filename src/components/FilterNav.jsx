@@ -1,55 +1,63 @@
 import React, { useContext } from 'react'
-import { AppBar, Avatar, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core'
-import { AddCircleOutlined, SubjectOutlined } from '@material-ui/icons';
-import HomeIcon from '@material-ui/icons/Home';
-import WorkIcon from '@material-ui/icons/Work';
+import { List, ListItem, ListItemIcon, ListItemText, makeStyles,} from '@material-ui/core'
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import { brown, green, indigo, pink, yellow } from '@material-ui/core/colors';
-import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import WeekendIcon from '@material-ui/icons/Weekend';
+import BuildIcon from '@material-ui/icons/Build';
+import { green, indigo, pink, amber, purple, red, brown, blueGrey } from '@material-ui/core/colors';
 
 
 import { AppContext } from '../context/AppContext'
 import { useHistory, useLocation } from 'react-router';
 
 const filterItems = [
-		{ text: 'All Notes',
-		icon: <SubjectOutlinedIcon color="primary"/>,
-		category: '',
-		color: brown[500]
-		},
-    { text: 'Work',
-    icon: <WorkIcon color="primary"/>,
-    category: 'work',
-	color: indigo[500],
-    },
-    { text: 'Home',
-    icon: <HomeIcon color="primary"/>,
-    category: 'home',
-	color: pink[400],
+	{ text: 'All Books',
+	icon: <MenuBookIcon color='primary'/>,
+	category: '',
+	},
+    { text: 'Economics',
+    icon: <BarChartIcon style={{color: indigo[500]}}/>,
+    category: 'economics',
     },
     { text: 'Health',
-    icon: <FitnessCenterIcon color="primary"/>,
+    icon: <FitnessCenterIcon style={{color: green[600]}}/>,
     category: 'health',
-	color: green[600],
     },
-    { text: 'Books',
-    icon: <MenuBookIcon color="primary"/>,
-    category: 'books',
-	color: yellow[400],
+    { text: 'Self-grow',
+    icon: <AccessibilityNewIcon style={{color: amber[500]}}/>,
+    category: 'self-grow',
     },
-  
+    { text: 'Fiction',
+    icon: <BeachAccessIcon style={{color: purple[500]}}/>,
+    category: 'fiction',
+    },
+	{ text: 'Popular-science',
+    icon: <BuildIcon style={{color: brown[500]}}/>,
+    category: 'popular-science',
+    },
+	{ text: 'Philosophy',
+    icon: <WeekendIcon style={{color: blueGrey[500]}}/>,
+    category: 'philosophy',
+    },
+	{ text: 'Biography',
+    icon: <FingerprintIcon style={{color: pink[400]}}/>,
+    category: 'biography',
+    },
+	{ text: 'Political',
+    icon: <RecordVoiceOverIcon style={{color: red[500]}}/>,
+    category: 'political',
+    },
   ]
 
 	const useStyles = makeStyles({
 		active: {
 			background: '#f4f4f4'
 		},
-		icon: {
-			color: (note) => note.color
-		}
-
 	})
 
 
@@ -73,11 +81,8 @@ const FilterNav = () => {
 				button
 				onClick={() => handleClick(item.category)}
 				className={(item.category == filter && location.pathname == '/')  && classes.active}
-				
-				// className={}
 				>
 				<ListItemIcon 
-					color={item.category}
 					className={classes.icon}
 				>{item.icon}</ListItemIcon>
 				<ListItemText primary={item.text}/>

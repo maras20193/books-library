@@ -49,14 +49,9 @@ const useStyles = makeStyles((theme) => {
 });
 
 const menuItems = [
-  // {
-  //   text: "Notes",
-  //   icon: <SubjectOutlined color="primary"/>,
-  //   path: '/'
-  // },
   {
     text: "Create Note",
-    icon: <AddCircleOutlined color="primary"/>,
+    icon: <AddCircleOutlined />,
     path: '/create'
   },
 ]

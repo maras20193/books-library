@@ -38,11 +38,15 @@ const Create = () => {
   const [secondaryCategory, setSecondaryCategory] = useState('none');
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [date, setDate] = useState(new Date().toISOString().slice(0,7));
+  const [picture, setPicture] = useState('');
 
   const [titleError, setTitleError] = useState(false);
   const [authorError, setAuthorError] = useState(false);
   const [numberOfPagesError, setNumberOfPagesError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [pictureError, setPictureError] = useState(false);
+
+  
 
   const classes = useStyles();
 
@@ -60,6 +64,7 @@ const Create = () => {
     if (!numberOfPages) setNumberOfPagesError(true);
     if (!date) setDate(true);
 
+
     if( title && author && numberOfPages ) {
       const book = {
         title,
@@ -68,6 +73,7 @@ const Create = () => {
         secondaryCategory,
         numberOfPages,
         date,
+        picture,
       }
     fetch("http://localhost:8000/notes", {
       method: "POST",
@@ -202,6 +208,16 @@ const Create = () => {
             required
             error={dateError}
             type='month'
+            />
+            <TextField 
+            className={classes.field}
+            value={picture}
+            onChange={(e) => setPicture(e.target.value)}
+            label="Picture" 
+            variant="outlined"
+            color="primary"
+            fullWidth
+            required
             />
           
 

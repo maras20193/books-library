@@ -1,23 +1,29 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, IconButton, Typography, makeStyles, Avatar, CardMedia } from '@material-ui/core'
 import { DeleteOutlined } from '@material-ui/icons';
-import { green, indigo, pink, yellow } from '@material-ui/core/colors';
+import { green, indigo, pink, amber, purple, red, brown, blueGrey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
 	avatar: {
 		backgroundColor: (note) => {
-			if (note.category == 'work'){
-				return indigo[500]
-			};
-			if (note.category == 'health'){
-				return green[600]
-			};
-			if (note.category == 'books'){
-				return yellow[700]
-			};
-			if (note.category == 'home'){
-				return pink[400]
-			};
+			switch (note.primaryCategory) {
+				case 'economics':
+					return indigo[500];
+				case 'health':
+					return green[600];	
+				case 'self-grow':
+					return amber[500];
+				case 'fiction':
+					return purple[500];
+				case 'popular-science':
+					return brown[500];
+				case 'philosophy':
+					return blueGrey[500];
+				case 'biography':
+					return pink[400];
+				case 'political':
+					return red[500];
+			}
 		} 
 	},
 	media: {
@@ -38,6 +44,8 @@ const useStyles = makeStyles({
 const NoteCard = ({ note, handleDelete }) => {
 	const classes = useStyles(note);
 
+	const defaultPicture = 'img/default-book.png'
+
   return (
 		<div>
 			<Card className={classes.test}>
@@ -57,8 +65,10 @@ const NoteCard = ({ note, handleDelete }) => {
 				/>
 				<CardMedia
 					className={classes.media}
-					image='https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-b-iext66634845.jpg'
-					title='harry'
+					image={note.picture
+						? note.picture
+						: defaultPicture}
+					title={note.title}
 				/>
 				<CardContent className={classes.flex}>
 					<Typography 
