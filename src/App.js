@@ -30,6 +30,9 @@ function App() {
                 <Route path="/create">
                   <Create/>
                 </Route>
+                <Route path="/statistics">
+                  <div>wykresy</div>
+                </Route>
               </Switch>
             </Layout>
           </Router>

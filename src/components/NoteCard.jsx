@@ -46,6 +46,10 @@ const NoteCard = ({ note, handleDelete }) => {
 
 	const defaultPicture = 'img/default-book.png'
 
+	const subheaderCategory = !note.secondaryCategory 
+		? note.primaryCategory
+		: `${note.primaryCategory} / ${note.secondaryCategory}`
+
   return (
 		<div>
 			<Card className={classes.test}>
@@ -61,7 +65,7 @@ const NoteCard = ({ note, handleDelete }) => {
 						</IconButton>
 					}
 					title={note.title}
-					subheader={note.primaryCategory}
+					subheader={subheaderCategory}
 				/>
 				<CardMedia
 					className={classes.media}

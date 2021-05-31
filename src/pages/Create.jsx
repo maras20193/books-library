@@ -36,7 +36,7 @@ const Create = () => {
   const [author, setAuthor] = useState('');
   const [primaryCategory, setPrimaryCategory] = useState('economics');
   const [secondaryCategory, setSecondaryCategory] = useState('none');
-  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0,7));
   const [picture, setPicture] = useState('');
 
@@ -217,7 +217,7 @@ const Create = () => {
             variant="outlined"
             color="primary"
             fullWidth
-            required
+            // required
             />
           
 

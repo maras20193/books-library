@@ -3,7 +3,7 @@ import { List, ListItem, ListItemIcon, ListItemText, makeStyles,} from '@materia
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import WorkIcon from '@material-ui/icons/Work';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
@@ -21,7 +21,7 @@ const filterItems = [
 	category: '',
 	},
     { text: 'Economics',
-    icon: <BarChartIcon style={{color: indigo[500]}}/>,
+    icon: <WorkIcon style={{color: indigo[500]}}/>,
     category: 'economics',
     },
     { text: 'Health',

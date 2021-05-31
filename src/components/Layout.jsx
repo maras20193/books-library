@@ -1,5 +1,6 @@
 import { AppBar, Avatar, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core'
-import { AddCircleOutlined, SubjectOutlined } from '@material-ui/icons';
+import { AddCircleOutlined } from '@material-ui/icons';
+import BarChartIcon from '@material-ui/icons/BarChart';
 import React from 'react'
 import { useHistory, useLocation } from 'react-router';
 import { format } from 'date-fns'
@@ -50,9 +51,14 @@ const useStyles = makeStyles((theme) => {
 
 const menuItems = [
   {
-    text: "Create Note",
+    text: "Add Book",
     icon: <AddCircleOutlined />,
     path: '/create'
+  },
+  {
+    text: "Statistics",
+    icon: <BarChartIcon />,
+    path: '/statistics'
   },
 ]
 
@@ -98,7 +104,7 @@ const Layout = ({children}) => {
             className={classes.title}
             color="secondary"
             >
-            My notes
+            Library Books
           </Typography>
 
           <List>

@@ -11,16 +11,6 @@
       "id": 20
     },
     {
-      "title": "sds",
-      "author": "wew",
-      "primaryCategory": "self-grow",
-      "secondaryCategory": "none",
-      "numberOfPages": "3336",
-      "date": "2021-05",
-      "picture": "",
-      "id": 21
-    },
-    {
       "title": "nowa",
       "author": "auter",
       "primaryCategory": "fiction",
@@ -29,6 +19,26 @@
       "date": "2021-05",
       "picture": "",
       "id": 22
+    },
+    {
+      "title": "NOwa ",
+      "author": "test",
+      "primaryCategory": "political",
+      "secondaryCategory": "popular-science",
+      "numberOfPages": "234",
+      "date": "2021-05",
+      "picture": "https://img.tantis.pl/image/be296f24-4dfe-4025-9836-b14df2100592/550x400/webp",
+      "id": 23
+    },
+    {
+      "title": "fgdfg",
+      "author": "fdsgsfdg",
+      "primaryCategory": "self-grow",
+      "secondaryCategory": "popular-science",
+      "numberOfPages": "334",
+      "date": "2021-07",
+      "picture": "https://img.tantis.pl/image/af630294-32cd-4169-82f2-44dca0234ac1/550x400/webp",
+      "id": 24
     }
   ]
 }

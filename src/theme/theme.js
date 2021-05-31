@@ -4,7 +4,7 @@ import { blue, indigo, lightBlue, pink } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
     palette: {
-        primary: indigo,
+        primary: blue,
         secondary: pink,
     },
     typography: {
