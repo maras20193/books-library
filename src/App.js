@@ -13,17 +13,23 @@ import Layout from './components/Layout';
 import AppProvider, { AppContext } from './context/AppContext';
 import Loader from './components/Loader';
 import { useContext } from 'react';
+import Login from './pages/Login';
+import LayoutLogin from './components/LayoutLogin';
 
 
 function App() {
+
+  const isUser = false;
   
   return (
     <div className="App">
       <AppProvider>
         <ThemeProvider theme={theme}>
           <Router>
-            <Layout>
-              <Switch>
+            <Switch>
+              {isUser 
+              ? 
+              <Layout>
                 <Route exact path="/">
                   <Notes/>
                 </Route>
@@ -33,8 +39,18 @@ function App() {
                 <Route path="/statistics">
                   <div>wykresy</div>
                 </Route>
-              </Switch>
-            </Layout>
+              </Layout>
+              :
+              <LayoutLogin>
+              <Route path="/login">
+                <Login/>
+              </Route>
+              <Route path="/signup">
+                <Login type='signup'/>
+              </Route>
+              </LayoutLogin>
+                }
+            </Switch>
           </Router>
         </ThemeProvider>
       </AppProvider>

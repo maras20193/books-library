@@ -10,7 +10,7 @@ import Loader from '../components/Loader';
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [isPending, setIsPending] = useState(true)
-  const { filter, changeFilter } = useContext(AppContext);
+  const { filter } = useContext(AppContext);
 
   const API_URL = filter 
     ? `http://localhost:8000/notes?primaryCategory=${filter}` 
@@ -36,12 +36,6 @@ const Notes = () => {
     setNotes(newNotes);
   };
 
-  const breakpoints = {
-    default: 3,
-    1280: 2,
-    960: 1,
-  }
-
   return (
     <>
     {isPending && <Loader/>}
@@ -55,27 +49,6 @@ const Notes = () => {
       </Grid>
     </Container>}
     </>
-
-
-// {masonry grid}
-    // <>
-    // {isPending && <Loader/>}
-    // {notes && 
-    // <Container>
-    //   <Masonry
-    //     breakpointCols={breakpoints}
-    //     className="my-masonry-grid"
-    //     columnClassName="my-masonry-grid_column"
-    //     >
-    //     {notes.map(note => (
-    //       <div item key={note.id}>
-    //         <NoteCard note={note} handleDelete={handleDelete}/>
-    //       </div>
-    //     ))}
-    //   </Masonry>
-    // </Container>
-    // }
-    // </>
 
   )
   };

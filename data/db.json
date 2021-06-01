@@ -39,6 +39,36 @@
       "date": "2021-07",
       "picture": "https://img.tantis.pl/image/af630294-32cd-4169-82f2-44dca0234ac1/550x400/webp",
       "id": 24
+    },
+    {
+      "title": "ssfdfsdf",
+      "author": "aasasd",
+      "primaryCategory": "health",
+      "secondaryCategory": "popular-science",
+      "numberOfPages": "3333",
+      "date": "2021-07",
+      "picture": "https://img.tantis.pl/image/ae0dc2dd-8718-4da0-bfa4-a7042c015e30/550x400/webp",
+      "id": 25
+    },
+    {
+      "title": "sgdfg",
+      "author": "dgsdgf",
+      "primaryCategory": "economics",
+      "secondaryCategory": "none",
+      "numberOfPages": "333",
+      "date": "2021-05",
+      "picture": "https://img.tantis.pl/image/f9cd5784-ffd6-48c3-a5d7-0a216a45191e/1024x768/webp?_ga=2.2612405.449645166.1622457497-1979805629.1621068627&_gac=1.229060846.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
+      "id": 26
+    },
+    {
+      "title": "hghjgj",
+      "author": "jklkj",
+      "primaryCategory": "health",
+      "secondaryCategory": "self-grow",
+      "numberOfPages": "88",
+      "date": "2021-05",
+      "picture": "https://img.tantis.pl/image/f9cd5784-ffd6-48c3-a5d7-0a216a45191e/1024x768/webp?_ga=2.2612405.449645166.1622457497-1979805629.1621068627&_gac=1.229060846.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
+      "id": 27
     }
   ]
 }
