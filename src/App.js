@@ -15,45 +15,54 @@ import Loader from './components/Loader';
 import { useContext } from 'react';
 import Login from './pages/Login';
 import LayoutLogin from './components/LayoutLogin';
+import AuthProvider from './context/AuthContext';
+import { useAuth } from './hooks/useAuth'
+import PrivateRoute from './components/PrivateRoute'
 
 
 function App() {
-
-  const isUser = false;
   
   return (
     <div className="App">
-      <AppProvider>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <Switch>
-              {isUser 
-              ? 
-              <Layout>
-                <Route exact path="/">
-                  <Notes/>
+      <AuthProvider>
+        <AppProvider>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <Switch>
+                {/* user routes */}
+                <PrivateRoute exact path="/" >
+                  <Layout>
+                    <Notes/>
+                  </Layout>
+                </PrivateRoute>
+                <PrivateRoute path="/create">
+                  <Layout>
+                    <Create/>
+                  </Layout>
+                </PrivateRoute>
+                <PrivateRoute path="/statistics">
+                  <Layout>
+                    <div>wykresy</div>
+                  </Layout>
+                </PrivateRoute>
+
+                {/* auth routes */}
+                <Route path="/login">
+                  <LayoutLogin>
+                    <Login/>
+                  </LayoutLogin>
                 </Route>
-                <Route path="/create">
-                  <Create/>
+                <Route path="/signup">
+                  <LayoutLogin>
+                    <Login type='signup'/>
+                  </LayoutLogin>
                 </Route>
-                <Route path="/statistics">
-                  <div>wykresy</div>
-                </Route>
-              </Layout>
-              :
-              <LayoutLogin>
-              <Route path="/login">
-                <Login/>
-              </Route>
-              <Route path="/signup">
-                <Login type='signup'/>
-              </Route>
-              </LayoutLogin>
-                }
-            </Switch>
-          </Router>
-        </ThemeProvider>
-      </AppProvider>
+                  
+              </Switch>
+            </Router>
+          </ThemeProvider>
+        </AppProvider>
+      </AuthProvider>
     </div>
   );
 }

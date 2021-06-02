@@ -1,7 +1,8 @@
-import { Box, Button, Link, makeStyles, Paper, TextField, Typography } from '@material-ui/core'
+import { Box, Button, Divider, Link, makeStyles, Paper, TextField, Typography } from '@material-ui/core'
 import createTypography from '@material-ui/core/styles/createTypography';
 import React, { useState } from 'react'
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -25,12 +26,18 @@ const useStyles = makeStyles({
 });
 
 const Login = ({type}) => {
-    const [login, setLogin] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false)
     const classes = useStyles();
     const history = useHistory();
+
+    const {currentUser,
+        signup,
+        login,
+    } = useAuth();
 
     const variant = {
         title: 'Log in',
@@ -45,13 +52,49 @@ const Login = ({type}) => {
         variant.linkPath = '/login'
     }
 
+    async function handleLogin() {
+        try {
+            setError('');
+            setLoading(true);
+            await login(email, password);
+            history.push('/')
+        } catch {
+            setError('Failed to log in!')
+        }
+        setLoading(false)
+        
+    }
+
+    async function handleSignup() {
+        if (password !== confirmPassword) {
+            return setError('Passwords do not match!')
+        }
+
+        try {
+            setError('');
+            setLoading(true);
+            await signup(email, password);
+            history.push('/')
+        } catch {
+            setError('Failed to sign up!')
+        }
+        setLoading(false)
+        
+
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(login);
-        console.log(password);
-        console.log(confirmPassword);
+
+        if (type === 'signup') {
+            handleSignup()
+        } else {
+            handleLogin()
+        }
+
+
     }
+
 
     return (
         <Paper className={classes.wrapper}>
@@ -68,11 +111,11 @@ const Login = ({type}) => {
                 >
                     {variant.title}
                 </Typography>
-
+                {error && <div>{error}</div>}
                 <TextField 
                 className={classes.field}
-                value={login}
-                onChange={(e) => setLogin(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 label="Login" 
                 variant="outlined"
                 color="primary"
@@ -86,6 +129,7 @@ const Login = ({type}) => {
                 label="Password" 
                 variant="outlined"
                 color="primary"
+                type='password'
                 required
                 />
                 {type === 'signup'
@@ -96,6 +140,7 @@ const Login = ({type}) => {
                     label="Confirm Password" 
                     variant="outlined"
                     color="primary"
+                    type='password'
                     required
                     />}
                 <Button
@@ -106,6 +151,7 @@ const Login = ({type}) => {
                 size="large"
                 fullWidth
                 color='secondary'
+                disabled={loading}
                 >
                 Submit
                 </Button>

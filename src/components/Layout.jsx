@@ -6,6 +6,8 @@ import { useHistory, useLocation } from 'react-router';
 import { format } from 'date-fns'
 import FilterNav from './FilterNav';
 import ThemeMenu from './ThemeMenu'
+import UserMenu from '../components/UserMenu'
+import { useAuth } from '../hooks/useAuth'
 
 const drawerWidth = 240;
 
@@ -43,8 +45,8 @@ const useStyles = makeStyles((theme) => {
     date: {
       flexGrow: 1,
     },
-    avatar: {
-      marginLeft: theme.spacing(2)
+    email: {
+      marginRight: theme.spacing(2)
     }
   }
 });
@@ -68,7 +70,7 @@ const Layout = ({children}) => {
   const history = useHistory();
   const location = useLocation();
 
-  
+  const { currentUser } = useAuth();
 
   return (
     <div className={classes.root}>
@@ -82,13 +84,11 @@ const Layout = ({children}) => {
           <Typography className={classes.date}>
             Today is the { format(new Date(), 'do MMMM Y') }
           </Typography>
-          <ThemeMenu/>
-          <Typography>
-            Lucas
+          {/* <ThemeMenu/> */}
+          <Typography className={classes.email}>
+            {currentUser && currentUser.email}
           </Typography>
-          <Avatar 
-            className={classes.avatar}
-            />
+          <UserMenu/>
         </Toolbar>
       </AppBar>
 
