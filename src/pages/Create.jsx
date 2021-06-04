@@ -6,17 +6,18 @@ import {
   FormControl, 
   FormControlLabel, 
   FormLabel, 
-  InputLabel, 
-  MenuItem, 
   Radio, 
   RadioGroup, 
-  Select, 
   TextField, 
   Typography, 
 } from '@material-ui/core';
+import firebase from 'firebase'
 import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
+import { db } from '../firebase';
+import { useAuth } from '../hooks/useAuth';
+import { useData } from '../hooks/useData'
 
 const useStyles = makeStyles({
   field: {
@@ -46,7 +47,8 @@ const Create = () => {
   const [dateError, setDateError] = useState(false);
   const [pictureError, setPictureError] = useState(false);
 
-  
+  const { currentUser } = useAuth();
+  const { books, setBooks, updateBooks} = useData();
 
   const classes = useStyles();
 
@@ -74,12 +76,21 @@ const Create = () => {
         numberOfPages,
         date,
         picture,
+        timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
       }
-    fetch("http://localhost:8000/notes", {
-      method: "POST",
-      headers: {"Content-type": "application/json"},
-      body: JSON.stringify(book)
-    }).then(() => history.push('/'))
+    // fetch("http://localhost:8000/notes", {
+    //   method: "POST",
+    //   headers: {"Content-type": "application/json"},
+    //   body: JSON.stringify(book)
+    // }).then(() => history.push('/'))
+
+    db
+    .collection(`users/${currentUser.uid}/books`)
+    .doc()
+    .set(book)
+    .then(updateBooks())
+    .then(history.push('/'))
+    .then(console.log('dodaje nowa ksiazke'))
     }
   }
 
@@ -90,6 +101,14 @@ const Create = () => {
     'Economics', 'Health', 'Self-grow', 'Fiction', 'Popular-science', 'Philosophy', 'Biography', 'Political', 'None'
   ]
 
+  const handleFile = (e) => {
+    if(e.target.files[0]) {
+      setPicture(e.target.files[0])
+    }
+    
+  }
+
+  console.log(picture)
     return (
         <Container>
           <Typography 
@@ -160,10 +179,11 @@ const Create = () => {
           <FormControl className={classes.field}>
             <FormLabel>Primary Category</FormLabel>
             <RadioGroup className={classes.radio} value={primaryCategory} onChange={(e) => setPrimaryCategory(e.target.value)}>
-              {primaryCategoryList.map(category => {
+              {primaryCategoryList.map((category, index )=> {
                 return (
                   <FormControlLabel 
-                    value={category.toLocaleLowerCase()} 
+                    value={category.toLocaleLowerCase()}
+                    key={index}
                     control={<Radio/>} 
                     label={category} />
                 )
@@ -213,13 +233,13 @@ const Create = () => {
             className={classes.field}
             value={picture}
             onChange={(e) => setPicture(e.target.value)}
-            label="Picture" 
+            label="Picture URL" 
             variant="outlined"
             color="primary"
             fullWidth
             // required
             />
-          
+
 
           <Button
             type="submit"

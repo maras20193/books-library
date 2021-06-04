@@ -61,14 +61,34 @@
       "id": 26
     },
     {
-      "title": "hghjgj",
-      "author": "jklkj",
-      "primaryCategory": "health",
+      "title": "firebase test ghghtghgffhgfgfthgfgh",
+      "author": "test",
+      "primaryCategory": "economics",
       "secondaryCategory": "self-grow",
-      "numberOfPages": "88",
-      "date": "2021-05",
-      "picture": "https://img.tantis.pl/image/f9cd5784-ffd6-48c3-a5d7-0a216a45191e/1024x768/webp?_ga=2.2612405.449645166.1622457497-1979805629.1621068627&_gac=1.229060846.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
+      "numberOfPages": "1123",
+      "date": "2021-06",
+      "picture": "https://img.tantis.pl/image/dd889153-c0d6-45c5-8a4f-e9733889c6d1/1024x768/webp?_ga=2.79469268.1132143815.1622794234-1979805629.1621068627&_gac=1.226341480.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
       "id": 27
+    },
+    {
+      "title": "druga proba",
+      "author": "test",
+      "primaryCategory": "philosophy",
+      "secondaryCategory": "none",
+      "numberOfPages": "123",
+      "date": "2021-06",
+      "picture": "https://img.tantis.pl/image/dd889153-c0d6-45c5-8a4f-e9733889c6d1/1024x768/webp?_ga=2.79469268.1132143815.1622794234-1979805629.1621068627&_gac=1.226341480.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
+      "id": 28
+    },
+    {
+      "title": "sd",
+      "author": "sd",
+      "primaryCategory": "economics",
+      "secondaryCategory": "none",
+      "numberOfPages": "20",
+      "date": "2021-06",
+      "picture": "https://img.tantis.pl/image/dd889153-c0d6-45c5-8a4f-e9733889c6d1/1024x768/webp?_ga=2.79469268.1132143815.1622794234-1979805629.1621068627&_gac=1.226341480.1621068627.Cj0KCQjw4v2EBhCtARIsACan3nwiF0NBeXZwziHTiCecgs76EfwdlThHHH9q5bX-2v0gNpKkECciIYcaAuKUEALw_wcB",
+      "id": 29
     }
   ]
 }

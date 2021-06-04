@@ -2,6 +2,9 @@ import React from 'react'
 import { Card, CardContent, CardHeader, IconButton, Typography, makeStyles, Avatar, CardMedia } from '@material-ui/core'
 import { DeleteOutlined } from '@material-ui/icons';
 import { green, indigo, pink, amber, purple, red, brown, blueGrey } from '@material-ui/core/colors';
+import { db } from '../firebase';
+import { useAuth } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 
 const useStyles = makeStyles({
 	avatar: {
@@ -41,14 +44,24 @@ const useStyles = makeStyles({
 	}
 })
 
-const NoteCard = ({ note, handleDelete }) => {
+const NoteCard = ({ dataID, note}) => {
 	const classes = useStyles(note);
+	const { currentUser } = useAuth();
+	const { books, setBooks, updateBooks } = useData();
 
 	const defaultPicture = 'img/default-book.png'
 
 	const subheaderCategory = !note.secondaryCategory 
 		? note.primaryCategory
 		: `${note.primaryCategory} / ${note.secondaryCategory}`
+
+	const handleDelete = () => {
+		db
+		.collection(`users/${currentUser.uid}/books`)
+		.doc(dataID)
+		.delete()
+		updateBooks()
+	} 
 
   return (
 		<div>

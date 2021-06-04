@@ -10,13 +10,11 @@ import { theme } from './theme/theme'
 import Create from './pages/Create';
 import Notes from './pages/Notes';
 import Layout from './components/Layout';
-import AppProvider, { AppContext } from './context/AppContext';
+import AppProvider from './context/AppContext';
 import Loader from './components/Loader';
-import { useContext } from 'react';
 import Login from './pages/Login';
 import LayoutLogin from './components/LayoutLogin';
 import AuthProvider from './context/AuthContext';
-import { useAuth } from './hooks/useAuth'
 import PrivateRoute from './components/PrivateRoute'
 
 
