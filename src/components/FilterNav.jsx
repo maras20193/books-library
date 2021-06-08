@@ -73,21 +73,26 @@ const FilterNav = () => {
 
 	}
 
+
+
 	return (
 		<List>
-		{filterItems.map(item => (
-			<ListItem 
-				key={item.text}
-				button
-				onClick={() => handleClick(item.category)}
-				className={(item.category == filter && location.pathname == '/')  && classes.active}
-				>
-				<ListItemIcon 
-					className={classes.icon}
-				>{item.icon}</ListItemIcon>
-				<ListItemText primary={item.text}/>
-			</ListItem>
-			))}
+		{filterItems.map(item => {
+
+			return (
+				<ListItem 
+					key={item.text}
+					button
+					onClick={() => handleClick(item.category)}
+					className={(item.category == filter && location.pathname == '/')  && classes.active}
+					>
+					<ListItemIcon 
+						className={classes.icon}
+					>{item.icon}</ListItemIcon>
+					<ListItemText primary={item.text}/>
+				</ListItem>
+			)
+			})}
 	</List>
 	)
 }

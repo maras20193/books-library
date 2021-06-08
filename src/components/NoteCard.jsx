@@ -60,7 +60,8 @@ const NoteCard = ({ dataID, note}) => {
 		.collection(`users/${currentUser.uid}/books`)
 		.doc(dataID)
 		.delete()
-		updateBooks()
+		.then(() => updateBooks())
+		
 	} 
 
   return (

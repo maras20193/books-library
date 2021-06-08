@@ -8,73 +8,36 @@ import NoteCard from '../components/NoteCard';
 import Loader from '../components/Loader';
 import { useData } from '../hooks/useData'
 import { db } from '../firebase';
+import { useAuth } from '../hooks/useAuth';
 
 const Notes = () => {
-  const [notes, setNotes] = useState([]);
-  const [isPending, setIsPending] = useState(true)
-  const { filter } = useContext(AppContext);
-  const { books } = useData();
+  const { books, isPending, filter} = useData();
+  const { currentUser } = useAuth();
 
-  const API_URL = filter 
-    ? `http://localhost:8000/notes?primaryCategory=${filter}` 
-    : "http://localhost:8000/notes"
-
-  useEffect(() => {
-      fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        setNotes(data.reverse())
-        setIsPending(false)
-      })
-  }, [filter]);
-
-
-
-
-
-
-  // const handleDelete = async (id) => {
-  //   await fetch("http://localhost:8000/notes/" + id, {
-  //     method: "DELETE"
-  //   });
-
-  //   const newNotes = notes.filter(note => note.id != id);
-  //   setNotes(newNotes);
-
-
-
-  // };
-
-  // const realTimeData = () => {
-  //   db
-  //   .collection(`users/${currentUser.uid}/books`)
-  //   .orderBy('timeStamp')
-  // }
-
-  const reverseBooks = [...books].reverse();
+  const  filterBooks = filter && books
+    ? [...books].filter(book => book.data().primaryCategory === filter)
+    : [...books];
 
   return (
     <>
-    {/* {isPending && <Loader/>} */}
-    {books && 
-    <Container>
-      <Grid container spacing={3}>
-        {/* {notes.map(note => (
-          <Grid item key={note.id} xs={12} md={6} lg={4}>
-            <NoteCard note={note} handleDelete={handleDelete}/>
-          </Grid>
-        ))} */}
-        {reverseBooks.map(book => {
-          return (
-            <Grid item 
-            key={book.id}
-            xs={12} md={6} lg={4}>
-              <NoteCard note={book.data()}    dataID={book.id}/>
-            </Grid>
-          )
-        })}
-      </Grid>
-    </Container>}
+    {isPending && <Loader/>}
+    {currentUser && 
+        <Container>
+        <Grid container spacing={3}>
+          {
+          filterBooks.map(book => {
+            return (
+              <Grid item 
+              key={book.id}
+              xs={12} md={6} lg={4}>
+                <NoteCard note={book.data()}    dataID={book.id}/>
+              </Grid>
+            )
+          })
+          }
+        </Grid>
+      </Container> }
+
     </>
 
   )

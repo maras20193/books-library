@@ -48,7 +48,7 @@ const Create = () => {
   const [pictureError, setPictureError] = useState(false);
 
   const { currentUser } = useAuth();
-  const { books, setBooks, updateBooks} = useData();
+  const { books, setBooks, updateBooks, changeFilter} = useData();
 
   const classes = useStyles();
 
@@ -89,7 +89,10 @@ const Create = () => {
     .doc()
     .set(book)
     .then(updateBooks())
-    .then(history.push('/'))
+    .then(() => {
+      changeFilter('')
+      history.push('/')
+    })
     .then(console.log('dodaje nowa ksiazke'))
     }
   }

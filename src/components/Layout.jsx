@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => {
     page: {
       backgroundColor: "#F9F9F9",
       width: "100%",
-      minHeight: `calc(100vh-${theme.mixins.toolbar})`,
+      // minHeight: `calc(100vh-${theme.mixins.toolbar.minHeight})`,
       padding: theme.spacing(3),
     },
     drawer: {

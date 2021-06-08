@@ -16,7 +16,7 @@ import Login from './pages/Login';
 import LayoutLogin from './components/LayoutLogin';
 import AuthProvider from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'
-
+import DonutChart from './components/DonutChart.jsx'
 
 function App() {
   
@@ -32,7 +32,7 @@ function App() {
                   <Layout>
                     <Notes/>
                   </Layout>
-                </PrivateRoute>
+                </PrivateRoute>                
                 <PrivateRoute path="/create">
                   <Layout>
                     <Create/>
@@ -40,7 +40,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/statistics">
                   <Layout>
-                    <div>wykresy</div>
+                    <DonutChart/>
                   </Layout>
                 </PrivateRoute>
 

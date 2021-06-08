@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { Avatar, makeStyles } from '@material-ui/core';
 import { useAuth } from '../hooks/useAuth'
 import { useHistory } from 'react-router';
+import { useData } from '../hooks/useData';
 
 const useStyles = makeStyles({
     pointer: {
@@ -16,6 +17,7 @@ export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes  = useStyles();
   const { currentUser, logout } = useAuth();
+  const { setBooks } = useData();
   const history = useHistory();
 
   const handleClick = (event) => {
@@ -28,6 +30,7 @@ export default function SimpleMenu() {
 
   async function handleLogout() {
     setAnchorEl(null);
+    setBooks([])
     try{
       await logout()
       history.push('/login')
