@@ -16,8 +16,7 @@ import Login from './pages/Login';
 import LayoutLogin from './components/LayoutLogin';
 import AuthProvider from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'
-import DonutChart from './components/DonutChart.jsx'
-import Statistics from './components/Statistics';
+import Statistics from './pages/Statistics';
 
 function App() {
   

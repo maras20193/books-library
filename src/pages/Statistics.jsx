@@ -1,9 +1,9 @@
 import { makeStyles, Paper, Typography, Grid, Container } from '@material-ui/core'
 import React from 'react'
-import DonutChart from './DonutChart'
+import DonutChart from '../components/DonutChart'
+import MonthChart from '../components/MonthChart'
 import { useData } from '../hooks/useData'
 import { green, indigo, pink, amber, purple, red, brown, blueGrey } from '@material-ui/core/colors';
-import id from 'date-fns/esm/locale/id/index.js';
 
 const useStyles = makeStyles(theme => {
 	return ({
@@ -17,24 +17,10 @@ const useStyles = makeStyles(theme => {
 	})
 });
 
-
-
-
-	
-
-
 const Statistics = () => {
 	const classes = useStyles();
 	const { books } = useData();
 
-	const statsPaper = [
-		{title: 'All reads',
-		number: 25},
-		{title: 'This Year (2021)',
-		number: 12},
-		{title: 'This Month (June)',
-		number: 2},
-	]
 	const CHART_DATA = [
 		{
 			category: 'Economics',
@@ -77,40 +63,104 @@ const Statistics = () => {
 			numberOfBooks: 0,
 		},
 	]
+	const DATA_BY_MONTH = [
+		{
+			month: "January",
+			numberOfBooks: 0,
+		},
+		{
+			month: "February",
+			numberOfBooks: 0,
+		},
+		{
+			month: "March",
+			numberOfBooks: 0,
+		},
+		{
+			month: "April",
+			numberOfBooks: 0,
+		},
+		{
+			month: "May",
+			numberOfBooks: 0,
+		},
+		{
+			month: "June",
+			numberOfBooks: 0,
+		},
+		{
+			month: "July",
+			numberOfBooks: 0,
+		},
+		{
+			month: "August",
+			numberOfBooks: 0,
+		},
+		{
+			month: "September",
+			numberOfBooks: 0,
+		},
+		{
+			month: "October",
+			numberOfBooks: 0,
+		},
+		{
+			month: "November",
+			numberOfBooks: 0,
+		},
+		{
+			month: "December",
+			numberOfBooks: 0,
+		},
+
+	]
+	const monthNames = ["January", "February", "March", "April", "May", "June",
+  	"July", "August", "September", "October", "November", "December"
+];
+
+	const booksByYear = books.filter(book => (
+		parseInt(book.data().date.slice(0,4)) === new Date().getFullYear()
+	)).length
+
+	const booksByMonth = books.filter(book => (
+		parseInt(book.data().date.slice(5,7)) === new Date().getMonth() + 1
+	)).length
+
+	const statsPaper = [
+		{
+			title: 'All reads',
+			number: books.length
+		},
+		{
+			title: `This Year (${new Date().getFullYear()})`,
+			number: booksByYear
+		},
+		{
+			title: `This Month (${DATA_BY_MONTH[new Date().getMonth()].month})`,
+			number: booksByMonth
+		}
+	]
+
 
 	const updateStats = () => {
-		const series = {
-			economics: 0,
-			health: 0, 
-			['self-grow']: 0,
-			fiction: 0,
-			['pupular-science']: 0,
-			philosophy: 0,
-			biography: 0,
-			political: 0,
-
-		}
-
-		books.map(book => {
-			CHART_DATA.map(item => {
+		// pie chart stats 
+		books.forEach(book => {
+			CHART_DATA.forEach(item => {
 				if(book.data().primaryCategory === item.category.toLowerCase()){
 					item.numberOfBooks ++
 				}
 			})
 		})
 
-		console.log(CHART_DATA)
-		console.log(CHART_DATA.map(item => item.numberOfBooks))
-
+		// bar chart stats
+		books.forEach(book => {
+			if(parseInt(book.data().date.slice(0,4)) === new Date().getFullYear()){
+				DATA_BY_MONTH[parseInt(book.data().date.slice(5,7)) - 1].numberOfBooks ++
+			}
+		})
 	}
 
 	updateStats()
-
-
-
-
-
-
 
 
 	// books.map(book => console.log(book.data()))
@@ -138,6 +188,7 @@ const Statistics = () => {
 				</Grid>
 			</Container>
 				<DonutChart data={CHART_DATA}/>
+				<MonthChart data={DATA_BY_MONTH}/>
 		</div>
 	)
 }
