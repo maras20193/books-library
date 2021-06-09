@@ -1,32 +1,58 @@
 import React from 'react'
 import ReactApexChart from 'react-apexcharts'
 
+
 export default class DonutChart extends React.Component {
     constructor(props) {
       super(props);
 
       this.state = {
       
-        series: [44, 55, 13, 43, 22],
+        series: props.data.map(item => item.numberOfBooks),
         options: {
           chart: {
             width: 380,
             type: 'pie',
           },
-          labels: ['economics', 'Team B', 'Team C', 'Team D', 'Team E'],
+          labels: props.data.map(item => item.category),
+          legend:{
+            position: 'bottom',
+            fontSize: '16px'
+          },
+          title: {
+            text: 'All read books by category',
+            align: 'left',
+            margin: 40,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false,
+            style: {
+              fontSize:  '24px',
+              fontWeight:  'bold',
+              fontFamily:  'quicksand',
+              color:  'rgba(0, 0, 0, 0.54)'
+            },
+        },
           responsive: [{
-            breakpoint: 480,
+            breakpoint: 780,
             options: {
               chart: {
-                width: 200
+                width: 460
               },
               legend: {
                 position: 'bottom'
               }
-            }
-          }]
+            },
+            title: {
+              align: 'center',
+              style: {
+                fontSize:  '16px',
+              },
+          },
+          }],
+          colors: props.data.map(item => item.color),
         },
-      
+
       
       };
     }
@@ -35,10 +61,12 @@ export default class DonutChart extends React.Component {
 
     render() {
       return (
-        
-
   <div id="chart">
-<ReactApexChart options={this.state.options} series={this.state.series} type="pie" width={380} />
+<ReactApexChart 
+options={this.state.options} 
+series={this.state.series} 
+type="pie" 
+width={480} />
 </div>
 
 

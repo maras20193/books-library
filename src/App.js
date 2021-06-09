@@ -17,6 +17,7 @@ import LayoutLogin from './components/LayoutLogin';
 import AuthProvider from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'
 import DonutChart from './components/DonutChart.jsx'
+import Statistics from './components/Statistics';
 
 function App() {
   
@@ -40,7 +41,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/statistics">
                   <Layout>
-                    <DonutChart/>
+                    <Statistics/>
                   </Layout>
                 </PrivateRoute>
 
