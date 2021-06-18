@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {
   Button, 
   Container, 
+  Divider, 
   FormControl, 
   FormControlLabel, 
   FormLabel, 
@@ -18,6 +19,7 @@ import { useHistory } from 'react-router';
 import { db } from '../firebase';
 import { useAuth } from '../hooks/useAuth';
 import { useData } from '../hooks/useData'
+import useStorage from '../hooks/useStorage'
 
 const useStyles = makeStyles({
   field: {
@@ -40,6 +42,7 @@ const Create = () => {
   const [numberOfPages, setNumberOfPages] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0,7));
   const [picture, setPicture] = useState('');
+  const [pictureUrl, setPictureUrl] = useState(null);
 
   const [titleError, setTitleError] = useState(false);
   const [authorError, setAuthorError] = useState(false);
@@ -48,13 +51,18 @@ const Create = () => {
   const [pictureError, setPictureError] = useState(false);
 
   const { currentUser } = useAuth();
-  const { books, setBooks, updateBooks, changeFilter} = useData();
+  const {updateBooks, changeFilter} = useData();
 
   const classes = useStyles();
 
   const history = useHistory()
 
-  const handleSubmit = (e) => {
+  // const { url } = useStorage(picture);
+
+  console.log(picture)
+  console.log(currentUser.uid)
+
+  async function handleSubmit (e) {
     e.preventDefault();
     setTitleError(false);
     setAuthorError(false);
@@ -67,7 +75,8 @@ const Create = () => {
     if (!date) setDate(true);
 
 
-    if( title && author && numberOfPages ) {
+    if( title && author && numberOfPages && picture ) {
+
       const book = {
         title,
         author,
@@ -78,23 +87,23 @@ const Create = () => {
         picture,
         timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
       }
-    // fetch("http://localhost:8000/notes", {
-    //   method: "POST",
-    //   headers: {"Content-type": "application/json"},
-    //   body: JSON.stringify(book)
-    // }).then(() => history.push('/'))
+
+
 
     db
     .collection(`users/${currentUser.uid}/books`)
     .doc()
     .set(book)
     .then(updateBooks())
+    // .then(setIsSending(false))
     .then(() => {
       changeFilter('')
       history.push('/')
     })
     .then(console.log('dodaje nowa ksiazke'))
     }
+
+
   }
 
   const primaryCategoryList = [
@@ -104,14 +113,22 @@ const Create = () => {
     'Economics', 'Health', 'Self-grow', 'Fiction', 'Popular-science', 'Philosophy', 'Biography', 'Political', 'None'
   ]
 
+  const types = ['image/png', 'image/jpeg']
+
   const handleFile = (e) => {
-    if(e.target.files[0]) {
-      setPicture(e.target.files[0])
+    const selected = e.target.files[0];
+    
+    if (selected && types.includes(selected.type)){
+      setPicture(selected)
+      setPictureError(false)
+    } else {
+      setPicture(null)
+      setPictureError(true)
+      // dodac wyswietlenie o png i jpg
     }
     
   }
 
-  console.log(picture)
     return (
         <Container>
           <Typography 
@@ -140,19 +157,6 @@ const Create = () => {
             required
             error={titleError}
             />
-          {/* <TextField
-            className={classes.field}
-            value={details}
-            onChange={(e) => setDetails(e.target.value)}
-            label="Details" 
-            variant="outlined"
-            color="primary"
-            fullWidth
-            multiline
-            rows={4}
-            required
-            error={detailsError}
-            /> */}
             <TextField 
             className={classes.field}
             value={author}
@@ -164,20 +168,6 @@ const Create = () => {
             required
             error={authorError}
             />
-            
-
-          {/* <FormControl className={classes.field} variant='outlined'>
-            <InputLabel id='primaryCategory'>Primary Category</InputLabel>
-            <Select
-              labelId='primaryCategory'
-              value={primaryCategory}
-              onChange={(e) => setPrimaryCategory(e.target.value)}
-              >
-              {primaryCategoryList.map(category => 
-                <MenuItem value={category.toLowerCase()}>{category}</MenuItem>
-              )}
-              </Select>
-          </FormControl> */}
 
           <FormControl className={classes.field}>
             <FormLabel>Primary Category</FormLabel>
@@ -242,6 +232,11 @@ const Create = () => {
             fullWidth
             // required
             />
+
+            {/* <input type="file" onChange={handleFile} />
+            {pictureError && <div key='1'>Please select an image file (png or jpg)</div>}
+            {picture && <div key='2'>{picture.name}</div>}
+            <br /> */}
 
 
           <Button

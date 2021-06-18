@@ -20,7 +20,7 @@ export default class DonutChart extends React.Component {
             fontSize: '16px'
           },
           title: {
-            text: 'All read books by category',
+            text: 'All read books by category (All time)',
             align: 'left',
             margin: 40,
             offsetX: 0,

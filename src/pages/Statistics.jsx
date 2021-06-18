@@ -187,8 +187,18 @@ const Statistics = () => {
 					))}
 				</Grid>
 			</Container>
-				<DonutChart data={CHART_DATA}/>
-				<MonthChart data={DATA_BY_MONTH}/>
+
+			<Container>
+				<Grid container spacing={3} wrap='wrap'>
+					<Grid item xs={12}  lg={6}>
+						<MonthChart data={DATA_BY_MONTH}/>
+					</Grid>
+					<Grid item xs={12}  lg={6}>
+						<DonutChart data={CHART_DATA}/>
+					</Grid>
+				</Grid>
+			</Container>
+
 		</div>
 	)
 }
