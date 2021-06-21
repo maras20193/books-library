@@ -4,13 +4,13 @@ import 'firebase/firestore'
 import 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAqrlBreunt1UxZCrxbt2wlm7e1pqldk4Y",
-    authDomain: "library-books-15385.firebaseapp.com",
-    projectId: "library-books-15385",
-    storageBucket: "library-books-15385.appspot.com",
-    messagingSenderId: "1059245344106",
-    appId: "1:1059245344106:web:7a2e52ac2938ab61f5d113",
-    measurementId: "G-VMKZ4FS6WZ"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = firebase.initializeApp(firebaseConfig);
