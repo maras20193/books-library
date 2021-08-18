@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blue, indigo, lightBlue, pink } from '@material-ui/core/colors';
+import { blue, pink } from '@material-ui/core/colors';
 
 
 export const theme = createMuiTheme({

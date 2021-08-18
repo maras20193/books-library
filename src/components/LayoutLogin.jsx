@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core'
 import React from 'react'
-import { useHistory } from 'react-router';
 
 const backgroundUrl = "url('img/background1.jpg')"
 

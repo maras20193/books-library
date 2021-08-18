@@ -11,7 +11,6 @@ import Create from './pages/Create';
 import Notes from './pages/Notes';
 import Layout from './components/Layout';
 import AppProvider from './context/AppContext';
-import Loader from './components/Loader';
 import Login from './pages/Login';
 import LayoutLogin from './components/LayoutLogin';
 import AuthProvider from './context/AuthContext';

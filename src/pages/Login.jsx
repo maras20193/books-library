@@ -1,5 +1,4 @@
 import { Box, Button, Divider, Link, makeStyles, Paper, TextField, Typography } from '@material-ui/core'
-import createTypography from '@material-ui/core/styles/createTypography';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'

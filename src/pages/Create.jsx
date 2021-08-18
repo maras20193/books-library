@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import {
   Button, 
   Container, 
-  Divider, 
   FormControl, 
   FormControlLabel, 
   FormLabel, 
@@ -19,7 +18,6 @@ import { useHistory } from 'react-router';
 import { db } from '../firebase';
 import { useAuth } from '../hooks/useAuth';
 import { useData } from '../hooks/useData'
-import useStorage from '../hooks/useStorage'
 
 const useStyles = makeStyles({
   field: {
@@ -42,13 +40,13 @@ const Create = () => {
   const [numberOfPages, setNumberOfPages] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0,7));
   const [picture, setPicture] = useState('');
-  const [pictureUrl, setPictureUrl] = useState(null);
+  // const [pictureUrl, setPictureUrl] = useState(null);
 
   const [titleError, setTitleError] = useState(false);
   const [authorError, setAuthorError] = useState(false);
   const [numberOfPagesError, setNumberOfPagesError] = useState(false);
   const [dateError, setDateError] = useState(false);
-  const [pictureError, setPictureError] = useState(false);
+  // const [pictureError, setPictureError] = useState(false);
 
   const { currentUser } = useAuth();
   const {updateBooks, changeFilter} = useData();
@@ -75,7 +73,7 @@ const Create = () => {
     if (!date) setDate(true);
 
 
-    if( title && author && numberOfPages && picture ) {
+    if( title && author && numberOfPages ) {
 
       const book = {
         title,
@@ -115,19 +113,19 @@ const Create = () => {
 
   const types = ['image/png', 'image/jpeg']
 
-  const handleFile = (e) => {
-    const selected = e.target.files[0];
+  // const handleFile = (e) => {
+  //   const selected = e.target.files[0];
     
-    if (selected && types.includes(selected.type)){
-      setPicture(selected)
-      setPictureError(false)
-    } else {
-      setPicture(null)
-      setPictureError(true)
-      // dodac wyswietlenie o png i jpg
-    }
+  //   if (selected && types.includes(selected.type)){
+  //     setPicture(selected)
+  //     setPictureError(false)
+  //   } else {
+  //     setPicture(null)
+  //     setPictureError(true)
+  //     // dodac wyswietlenie o png i jpg
+  //   }
     
-  }
+  // }
 
     return (
         <Container>
@@ -254,6 +252,6 @@ const Create = () => {
 
         </Container>
     );
-            }
+  }
 
 export default Create

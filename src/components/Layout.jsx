@@ -1,11 +1,10 @@
-import { AppBar, Avatar, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import { AddCircleOutlined } from '@material-ui/icons';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import React from 'react'
 import { useHistory, useLocation } from 'react-router';
 import { format } from 'date-fns'
 import FilterNav from './FilterNav';
-import ThemeMenu from './ThemeMenu'
 import UserMenu from '../components/UserMenu'
 import { useAuth } from '../hooks/useAuth'
 

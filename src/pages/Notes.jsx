@@ -1,13 +1,8 @@
 import { Container, Grid} from '@material-ui/core';
-import React, { useState, useEffect, useContext } from 'react';
 import Masonry from 'react-masonry-css';
-
-import { AppContext } from '../context/AppContext'
-
 import NoteCard from '../components/NoteCard';
 import Loader from '../components/Loader';
 import { useData } from '../hooks/useData'
-import { db } from '../firebase';
 import { useAuth } from '../hooks/useAuth';
 
 const Notes = () => {
